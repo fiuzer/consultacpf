@@ -15,14 +15,14 @@ from time import sleep
 
 # Ler a planilha
 planilha_cliente = openpyxl.load_workbook('dados_clientes.xlsx')
-
 pagina_cliente = planilha_cliente['Sheet1']
+# Abre o navegador e entra no site: https://consultcpf-devaprender.netlify.app/
 browser = webdriver.Chrome()
 browser.get('https://consultcpf-devaprender.netlify.app/')
  
+ # 2 - Usar o cpf para consulta do status do cliente
 for linha in pagina_cliente.iter_rows(min_row=2, values_only=True):
   nome, valor, cpf, vencimento = linha
- # 2 - Entrar no site para usar o cpf para consulta do status do cliente: https://consultcpf-devaprender.netlify.app/
   sleep(5)
 
   cpf_element = browser.find_element(By.ID, 'cpfInput')
